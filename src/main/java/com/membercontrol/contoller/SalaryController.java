@@ -12,27 +12,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 public class SalaryController {
-	private final CalculateService calculateService;
+    private final CalculateService calculateService;
 
-	@Autowired
-	public SalaryController(CalculateService calculateService) {
-		this.calculateService = calculateService;
-	}
+    @Autowired
+    public SalaryController(CalculateService calculateService) {
+        this.calculateService = calculateService;
+    }
 
 
-	/**
-	 * 給料明細を出力
-	 *
-	 * @return 状態 success/fail
-	 */
-	@RequestMapping(path = "/calculate", method = RequestMethod.POST)
-	public ResponseEntity<String> calculatePaying() {
-		try {
-			calculateService.paySlipsOutput();
-			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+    /**
+     * 給料明細を出力
+     *
+     * @return 状態 success/fail
+     */
+    @RequestMapping(path = "/calculate", method = RequestMethod.GET)
+    public ResponseEntity<String> calculatePaying() {
+        try {
+            calculateService.paySlipsOutput();
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
